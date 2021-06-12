@@ -37,3 +37,4 @@
   - Follow / Unfollow
   - Find My Follow list
   - Find Who Follow me
+  - File Upload
