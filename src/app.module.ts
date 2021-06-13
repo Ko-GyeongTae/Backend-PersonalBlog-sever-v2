@@ -3,12 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
-import { CommentModule } from './comment/comment.module';
 import { ConfigModule } from '@nestjs/config';
+import { PostModule } from './post/post.module';
 import Joi from 'joi';
 
 @Module({
-  imports: [AuthModule, CommentModule, ConfigModule.forRoot({
+  imports: [AuthModule, PostModule, ConfigModule.forRoot({
     envFilePath: process.env.NODE_ENV,
     isGlobal: true,
     /*validationSchema: Joi.object({
@@ -19,7 +19,7 @@ import Joi from 'joi';
       NODE_PORT:Joi.number().required(),
       JWT_SECRET:Joi.string().required(),
     }),*/
-  })],
+  }), PostModule],
   controllers: [AppController],
   providers: [AppService, AuthService],
 })
