@@ -1,19 +1,28 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, ObjectIdColumn } from "typeorm";
 
 @Entity()
-export class Post {
-    @PrimaryColumn('uuid')
-    postId: string
+export class Repo {
+    @ObjectIdColumn()
+    _id: string
 
     @Column()
-    title: string
+    id: string
 
     @Column()
-    content: string
+    name: string
 
     @Column()
-    media: string
+    html_url: string
 
-    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
-    createdAt: string;
+    @Column()
+    description: string
+
+    @Column()
+    created_at: Date
+
+    @Column()
+    clone_url: string
+
+    @Column()
+    language: string
 }

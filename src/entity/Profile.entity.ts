@@ -1,19 +1,40 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, ObjectIdColumn } from "typeorm";
 
 @Entity()
-export class Post {
-    @PrimaryColumn('uuid')
-    postId: string
+export class Profile {
+    @ObjectIdColumn()
+    _id: string
 
     @Column()
-    title: string
+    login: string
 
     @Column()
-    content: string
+    id: number
 
     @Column()
-    media: string
+    avatar_url: string
 
-    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP"})
-    createdAt: string;
+    @Column()
+    html_url: string
+
+    @Column()
+    name: string
+
+    @Column()
+    company: string
+
+    @Column()
+    location: string
+
+    @Column()
+    email: string
+
+    @Column()
+    bio: string
+
+    @Column()
+    created_at: Date
+
+    @Column()
+    updated_at: Date
 }
