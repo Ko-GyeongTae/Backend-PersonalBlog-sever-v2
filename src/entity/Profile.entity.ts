@@ -1,6 +1,6 @@
 import { Column, Entity, ObjectIdColumn } from "typeorm";
 
-@Entity()
+@Entity('profiles')
 export class Profile {
     @ObjectIdColumn()
     _id: string
@@ -37,4 +37,8 @@ export class Profile {
 
     @Column()
     updated_at: Date
+
+    constructor(profiles?: Partial<Profile>) {
+        Object.assign(this, profiles);
+    }
 }

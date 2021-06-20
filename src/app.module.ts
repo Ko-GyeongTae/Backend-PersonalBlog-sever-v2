@@ -21,13 +21,16 @@ import Joi from 'joi';
   }), 
   TypeOrmModule.forRoot({
     type: 'mongodb',
-    url:
-      `mongodb://${process.env.DATABASE_HOST}:${process.env.DATABASE_PASSWORD}`,
-    entities: [__dirname + '**/**.entity{.ts,.js}'],
-    synchronize: true,
+    host: process.env.DATABASE_HOST,
+    port: 27017,
+    database: process.env.DATABASE_NAME,
+    entities: ["src/entity/*.*"],
+    ssl: true,
+    useUnifiedTopology: true,
     useNewUrlParser: true,
     logging: true,
-  }),
+    synchronize: true,
+  })
 ],
   controllers: [AppController],
   providers: [AppService],

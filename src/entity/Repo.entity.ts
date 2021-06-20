@@ -1,6 +1,6 @@
 import { Column, Entity, ObjectIdColumn } from "typeorm";
 
-@Entity()
+@Entity('repos')
 export class Repo {
     @ObjectIdColumn()
     _id: string
@@ -25,4 +25,8 @@ export class Repo {
 
     @Column()
     language: string
+
+    constructor(repos?: Partial<Repo>) {
+        Object.assign(this, repos);
+    }
 }
