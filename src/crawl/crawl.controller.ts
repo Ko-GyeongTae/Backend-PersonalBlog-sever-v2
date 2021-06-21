@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { CrawlService } from './crawl.service';
 
 @Controller('crawl')
@@ -7,8 +7,13 @@ export class CrawlController {
         private readonly crawlService: CrawlService
     ) { }
 
-    @Get('test')
-    getAll():Promise<object>{
-        return this.crawlService.getAll();
+    @Get('profile')
+    getProfile():Promise<object>{
+        return this.crawlService.getProfile();
+    }
+
+    @Get(':lang')
+    getByLanguage(@Param() params): Promise<object>{
+        return this.crawlService.getByLanguage(params);
     }
 }

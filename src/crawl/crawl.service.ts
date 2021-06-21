@@ -13,7 +13,20 @@ export class CrawlService {
         private readonly repoRepository: Repository<Repo>
     ) { }
 
-    getAll():Promise<object>{
+    getProfile():Promise<object>{
         return this.profileRepository.find();
+    }
+
+    async getByLanguage(params):Promise<object>{
+        console.log(params.lang);
+        const obj = await this.repoRepository.find(
+            {
+                where: {
+                    language: {$eq: params.lang}
+                }
+            }
+        );
+        console.log(obj);
+        return obj;
     }
 }
