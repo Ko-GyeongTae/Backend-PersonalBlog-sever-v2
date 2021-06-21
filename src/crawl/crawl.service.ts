@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Profile } from 'src/entity/Profile.entity';
 import { Repo } from 'src/entity/Repo.entity';
 import { Repository } from 'typeorm';
@@ -12,13 +12,14 @@ export class CrawlService {
         @InjectRepository(Repo)
         private readonly repoRepository: Repository<Repo>
     ) { }
+    private logger = new Logger();
 
     getProfile():Promise<object>{
+        this.logger.log(`[CRAWL] Request of Profie`);
         return this.profileRepository.find();
     }
 
     async getByLanguage(params):Promise<object>{
-        console.log(params.lang);
         const obj = await this.repoRepository.find(
             {
                 where: {
@@ -26,7 +27,19 @@ export class CrawlService {
                 }
             }
         );
-        console.log(obj);
+        this.logger.log(`[CRAWL] Request of Repositories find by language`);
+        return obj;
+    }
+
+    async getByCategory(params):Promise<object>{
+        const obj = await this.repoRepository.find(
+            {
+                where: {
+                    category: {$eq: params.category}
+                }
+            }
+        );
+        this.logger.log(`[CRAWL] Request of Repositories find by category`);
         return obj;
     }
 }

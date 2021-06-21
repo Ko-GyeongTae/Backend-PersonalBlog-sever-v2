@@ -12,8 +12,13 @@ export class CrawlController {
         return this.crawlService.getProfile();
     }
 
-    @Get(':lang')
+    @Get('language/:lang')
     getByLanguage(@Param() params): Promise<object>{
         return this.crawlService.getByLanguage(params);
+    }
+
+    @Get('category/:category')
+    getByCategory(@Param() params): Promise<object>{
+        return this.crawlService.getByCategory(params);
     }
 }
