@@ -26,6 +26,9 @@ export class Repo {
     @Column()
     language: string
 
+    @Column()
+    category: string
+
     constructor(repos?: Partial<Repo>) {
         Object.assign(this, repos);
     }
