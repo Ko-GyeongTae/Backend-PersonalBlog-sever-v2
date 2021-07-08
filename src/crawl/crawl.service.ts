@@ -24,6 +24,9 @@ export class CrawlService {
             {
                 where: {
                     language: {$eq: params.lang}
+                },
+                order: {
+                    created_at: 'DESC'
                 }
             }
         );
@@ -36,6 +39,9 @@ export class CrawlService {
             {
                 where: {
                     category: {$eq: params.category}
+                },
+                order: {
+                    created_at: 'DESC'
                 }
             }
         );
